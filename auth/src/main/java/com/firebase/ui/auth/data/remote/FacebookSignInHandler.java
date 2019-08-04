@@ -109,7 +109,8 @@ public class FacebookSignInHandler extends ProviderSignInBase<AuthUI.IdpConfig> 
 
         @Override
         public void onCancel() {
-            onError(new FacebookException());
+           setResult(Resource.<IdpResponse>forFailure(new FirebaseUiException(
+		ErrorCodes.SIGNIN_CANCELED, new FacebookException())));
         }
 
         @Override
